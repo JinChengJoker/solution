@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GitLab 部署 | 疑难杂症聚集地</title>
+    <meta name="description" content="Just playing around.">
+    <link rel="stylesheet" href="/solution/assets/style.e2c1070b.css">
+    <link rel="modulepreload" href="/solution/assets/app.60263e9e.js">
+    <link rel="modulepreload" href="/solution/assets/ci_cd_gitlab.md.2a03812b.lean.js">
+    
+    <meta name="twitter:title" content="GitLab 部署 | 疑难杂症聚集地">
+  <meta property="og:title" content="GitLab 部署 | 疑难杂症聚集地">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="theme"><header class="nav-bar" data-v-547d9960><div class="sidebar-button" data-v-547d9960><svg class="icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z" class></path></svg></div><a class="nav-bar-title" href="/solution/" aria-label="疑难杂症聚集地, back to home" data-v-547d9960 data-v-1f518e30><!----> 疑难杂症聚集地</a><div class="flex-grow" data-v-547d9960></div><div class="nav" data-v-547d9960><!----></div><!--[--><!--]--></header><aside class="sidebar" data-v-3cb09087><!----><!--[--><!--]--><ul class="sidebar-links" data-v-3cb09087><!--[--><li class="sidebar-link"><a class="sidebar-link-item" href="/solution/">欢迎</a><!----></li><li class="sidebar-link"><p class="sidebar-link-item">CI &amp; CD</p><ul class="sidebar-links"><li class="sidebar-link"><a class="sidebar-link-item active" href="/solution/ci_cd/gitlab">GitLab 部署</a><!----></li></ul></li><!--]--></ul><!--[--><!--]--></aside><div class="sidebar-mask"></div><main class="page" data-v-995fdb82><div class="container" data-v-995fdb82><!--[--><!--]--><div style="position:relative;" class="content" data-v-995fdb82><div><h1 id="gitlab-部署" tabindex="-1">GitLab 部署 <a class="header-anchor" href="#gitlab-部署" aria-hidden="true">#</a></h1><h2 id="deploy-阶段总是使用的旧镜像" tabindex="-1">deploy 阶段总是使用的旧镜像 <a class="header-anchor" href="#deploy-阶段总是使用的旧镜像" aria-hidden="true">#</a></h2><p>检查<code>/helm/${project_name}/values-*.yaml</code>文件，<code>nodeSelector.appenv</code>为<code>test</code>时，不要配置<code>nodeSelector.nodetype</code>。</p><div class="language-yaml"><pre><code><span class="token key atrule">nodeSelector</span><span class="token punctuation">:</span>
+  <span class="token key atrule">appenv</span><span class="token punctuation">:</span> test
+
+<span class="token comment"># or</span>
+
+<span class="token key atrule">nodeSelector</span><span class="token punctuation">:</span>
+  <span class="token key atrule">appenv</span><span class="token punctuation">:</span> production
+  <span class="token key atrule">nodetype</span><span class="token punctuation">:</span> front
+</code></pre></div><h2 id="values-container-command-未执行" tabindex="-1">values.container.command 未执行 <a class="header-anchor" href="#values-container-command-未执行" aria-hidden="true">#</a></h2><p>检查<code>/helm/${project_name}/templates/deployment.yaml</code>文件：</p><div class="language-yaml"><pre><code><span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+        <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token punctuation">-</span> if .Values.container.command <span class="token punctuation">}</span><span class="token punctuation">}</span>
+        <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;bash&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-c&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> .Values.container.command <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
+        <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token punctuation">-</span> end <span class="token punctuation">}</span><span class="token punctuation">}</span>
+</code></pre></div></div></div><footer class="page-footer" data-v-995fdb82 data-v-4fb8c0bd><div class="edit" data-v-4fb8c0bd><div class="edit-link" data-v-4fb8c0bd data-v-6f1dd9e0><!----></div></div><div class="updated" data-v-4fb8c0bd><!----></div></footer><div class="next-and-prev-link" data-v-995fdb82 data-v-f65d85f8><div class="container" data-v-f65d85f8><div class="prev" data-v-f65d85f8><a class="link" href="/solution/" data-v-f65d85f8><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="icon icon-prev" data-v-f65d85f8><path d="M19,11H7.4l5.3-5.3c0.4-0.4,0.4-1,0-1.4s-1-0.4-1.4,0l-7,7c-0.1,0.1-0.2,0.2-0.2,0.3c-0.1,0.2-0.1,0.5,0,0.8c0.1,0.1,0.1,0.2,0.2,0.3l7,7c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3c0.4-0.4,0.4-1,0-1.4L7.4,13H19c0.6,0,1-0.4,1-1S19.6,11,19,11z"></path></svg><span class="text" data-v-f65d85f8>欢迎</span></a></div><div class="next" data-v-f65d85f8><!----></div></div></div><!--[--><!--]--></div></main></div><!----><!--]--></div>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"ci_cd_gitlab.md\":\"2a03812b\",\"index.md\":\"419287dd\"}")</script>
+    <script type="module" async src="/solution/assets/app.60263e9e.js"></script>
+    
+  </body>
+</html>
