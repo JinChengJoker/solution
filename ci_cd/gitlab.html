@@ -7,7 +7,7 @@
     <meta name="description" content="Just playing around.">
     <link rel="stylesheet" href="/solution/assets/style.e2c1070b.css">
     <link rel="modulepreload" href="/solution/assets/app.60263e9e.js">
-    <link rel="modulepreload" href="/solution/assets/ci_cd_gitlab.md.2a03812b.lean.js">
+    <link rel="modulepreload" href="/solution/assets/ci_cd_gitlab.md.48fe3005.lean.js">
     
     <meta name="twitter:title" content="GitLab 部署 | 疑难杂症聚集地">
   <meta property="og:title" content="GitLab 部署 | 疑难杂症聚集地">
@@ -28,8 +28,11 @@
         <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token punctuation">-</span> if .Values.container.command <span class="token punctuation">}</span><span class="token punctuation">}</span>
         <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;bash&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-c&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> .Values.container.command <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
         <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token punctuation">-</span> end <span class="token punctuation">}</span><span class="token punctuation">}</span>
+</code></pre></div><h2 id="报错：yaml-parse-error" tabindex="-1">报错：YAML parse error <a class="header-anchor" href="#报错：yaml-parse-error" aria-hidden="true">#</a></h2><p>可能由于一些格式化插件自动格式化了<code>.yaml</code>文件，或模板格式不对，从而导致解析错误。</p><p>例如<code>prettier</code>可以配置忽略整个<code>helm</code>目录。</p><div class="language-"><pre><code>// .prettierignore
+
+/helm
 </code></pre></div></div></div><footer class="page-footer" data-v-995fdb82 data-v-4fb8c0bd><div class="edit" data-v-4fb8c0bd><div class="edit-link" data-v-4fb8c0bd data-v-6f1dd9e0><!----></div></div><div class="updated" data-v-4fb8c0bd><!----></div></footer><div class="next-and-prev-link" data-v-995fdb82 data-v-f65d85f8><div class="container" data-v-f65d85f8><div class="prev" data-v-f65d85f8><a class="link" href="/solution/" data-v-f65d85f8><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="icon icon-prev" data-v-f65d85f8><path d="M19,11H7.4l5.3-5.3c0.4-0.4,0.4-1,0-1.4s-1-0.4-1.4,0l-7,7c-0.1,0.1-0.2,0.2-0.2,0.3c-0.1,0.2-0.1,0.5,0,0.8c0.1,0.1,0.1,0.2,0.2,0.3l7,7c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3c0.4-0.4,0.4-1,0-1.4L7.4,13H19c0.6,0,1-0.4,1-1S19.6,11,19,11z"></path></svg><span class="text" data-v-f65d85f8>欢迎</span></a></div><div class="next" data-v-f65d85f8><!----></div></div></div><!--[--><!--]--></div></main></div><!----><!--]--></div>
-    <script>__VP_HASH_MAP__ = JSON.parse("{\"ci_cd_gitlab.md\":\"2a03812b\",\"index.md\":\"419287dd\"}")</script>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"ci_cd_gitlab.md\":\"48fe3005\",\"index.md\":\"419287dd\"}")</script>
     <script type="module" async src="/solution/assets/app.60263e9e.js"></script>
     
   </body>
