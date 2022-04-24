@@ -32,3 +32,15 @@ spec:
         command: ["bash", "-c", {{ .Values.container.command }}]
         {{- end }}
 ```
+
+## 报错：YAML parse error
+
+可能由于一些格式化插件自动格式化了`.yaml`文件，或模板格式不对，从而导致解析错误。
+
+例如`prettier`可以配置忽略整个`helm`目录。
+
+```
+// .prettierignore
+
+/helm
+```
